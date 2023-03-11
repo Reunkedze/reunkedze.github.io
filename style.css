@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+
+.field {
+  width: 100vh;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 5vh;
+  height: 5vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+  box-sizing: border-box;
+
+  color: red;
+
+  transition-duration: 0.1s;
+}
+
+.start {
+  width: 300px;
+  height: 100px;
+
+  position: absolute;
+  right: 4%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.active {
+  background-color: black;
+}
