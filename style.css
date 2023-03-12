@@ -8,6 +8,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
+  bottom: 0;
   margin: auto;
 }
 
@@ -16,8 +18,8 @@ body {
 }
 
 .cell {
-  width: 5vh;
-  height: 5vh;
+  width: 3.226vh;
+  height: 3.226vh;
 
   display: flex;
   justify-content: center;
@@ -29,6 +31,19 @@ body {
   color: red;
 
   transition-duration: 0.1s;
+
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 .start {
@@ -38,6 +53,17 @@ body {
   position: absolute;
   right: 4%;
   top: 0;
+  bottom: 20%;
+  margin: auto;
+}
+
+.reset {
+  width: 300px;
+  height: 100px;
+
+  position: absolute;
+  right: 4%;
+  top: 20%;
   bottom: 0;
   margin: auto;
 }

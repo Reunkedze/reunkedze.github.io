@@ -1,8 +1,9 @@
 let isGameStarted = false
+const size = 31
 const start = document.querySelector('.start')
+const reset = document.querySelector('.reset')
 const rows = document.querySelectorAll('.row')
 const cells = document.querySelectorAll('.cell')
-
 
 // const firstCell = document.querySelector('.cell')
 // firstCell.onclick = () => {
@@ -30,7 +31,7 @@ const cellsEnumerate = () => {
           }
         }
         rows[i].children[n].textContent = activeNeighboursCount
-      } else if (i === 0 && n === 19) {
+      } else if (i === 0 && n === size - 1) {
         activeNeighboursCount = 0
         const neighbours = [rows[i].children[n - 1], rows[i + 1].children[n - 1], rows[i + 1].children[n]]
         for (let neighboursCells = 0; neighboursCells < 3; neighboursCells++) {
@@ -39,7 +40,7 @@ const cellsEnumerate = () => {
           }
         }
         rows[i].children[n].textContent = activeNeighboursCount
-      } else if (i === 19 && n === 0) {
+      } else if (i === size - 1 && n === 0) {
         activeNeighboursCount = 0
         const neighbours = [rows[i - 1].children[n], rows[i - 1].children[n + 1], rows[i].children[n + 1]]
         for (let neighboursCells = 0; neighboursCells < 3; neighboursCells++) {
@@ -48,7 +49,7 @@ const cellsEnumerate = () => {
           }
         }
         rows[i].children[n].textContent = activeNeighboursCount
-      } else if (i === 19 && n === 19) {
+      } else if (i === size - 1 && n === size - 1) {
         activeNeighboursCount = 0
         const neighbours = [rows[i - 1].children[n], rows[i - 1].children[n - 1], rows[i].children[n - 1]]
         for (let neighboursCells = 0; neighboursCells < 3; neighboursCells++) {
@@ -66,7 +67,7 @@ const cellsEnumerate = () => {
           }
         }
         rows[i].children[n].textContent = activeNeighboursCount
-      } else if (i === 19) {
+      } else if (i === size - 1) {
         activeNeighboursCount = 0
         const neighbours = [rows[i].children[n - 1], rows[i - 1].children[n - 1], rows[i - 1].children[n], rows[i - 1].children[n + 1], rows[i].children[n + 1]]
         for (let neighboursCells = 0; neighboursCells < 5; neighboursCells++) {
@@ -75,7 +76,7 @@ const cellsEnumerate = () => {
           }
         }
         rows[i].children[n].textContent = activeNeighboursCount
-      } else if (n === 19) {
+      } else if (n === size - 1) {
         activeNeighboursCount = 0
         const neighbours = [rows[i - 1].children[n], rows[i - 1].children[n - 1], rows[i].children[n - 1], rows[i + 1].children[n - 1], rows[i + 1].children[n]]
         for (let neighboursCells = 0; neighboursCells < 5; neighboursCells++) {
@@ -110,7 +111,7 @@ const cellsEnumerate = () => {
 start.onclick = () => {
   isGameStarted = true
   cellsEnumerate()
-  setInterval(() => {
+  const game = setInterval(() => {
     isChanged = false
     for (let i = 0; i < rows.length; i++) {
       for (let n = 0; n < rows[i].children.length; n++) {
@@ -128,6 +129,26 @@ start.onclick = () => {
     }
     cellsEnumerate()
   }, 1000)
+
+  reset.onclick = () => {
+    clearInterval(game)
+    isGameStarted = false
+    for (let i = 0; i < rows.length; i++) {
+      for (let n = 0; n < rows[i].children.length; n++) {
+        rows[i].children[n].textContent = ''
+        rows[i].children[n].classList.remove('active')
+      }
+    }
+  }
+}
+
+reset.onclick = () => {
+  for (let i = 0; i < rows.length; i++) {
+    for (let n = 0; n < rows[i].children.length; n++) {
+      rows[i].children[n].textContent = ''
+      rows[i].children[n].classList.remove('active')
+    }
+  }
 }
 
 const setter = (element) => {
@@ -138,6 +159,7 @@ const setter = (element) => {
       } else {
         element.classList.add('active')
       }
+      cellsEnumerate()
     }
   }
 }
